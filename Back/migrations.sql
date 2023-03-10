@@ -1,4 +1,4 @@
--- Active: 1675376651357@@35.226.146.116@3306@junior-aulas
+-- Active: 1678469193365@@127.0.0.1@3306
 DROP TABLES Case_Clients, Case_Products, Case_Orders;
 
 CREATE TABLE Case_Clients (

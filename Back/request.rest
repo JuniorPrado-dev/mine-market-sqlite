@@ -3,7 +3,7 @@ POST http://localhost:3003/client/new-client
 Content-Type: application/json
 
 {
-    "name":"Fay"
+    "name":"Isa"
 }
 
 ###Pegar todos os cientes

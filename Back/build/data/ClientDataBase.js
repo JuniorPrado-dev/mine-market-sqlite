@@ -22,7 +22,7 @@ class ClientDatabase extends BaseDataBase_1.BaseDataBase {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 // ClientDatabase.connection.initialize();
-                yield ClientDatabase.connection(this.clientTable).insert(client);
+                yield ClientDatabase.connection('Case_Clients').insert(client);
             }
             catch (err) {
                 throw new CustomError_1.CustomError(err.status, err.message);

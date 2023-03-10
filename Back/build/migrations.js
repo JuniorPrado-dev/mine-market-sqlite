@@ -14,14 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sqlite3_1 = __importDefault(require("sqlite3"));
 const sqlite_1 = require("sqlite");
+const dotenv_1 = __importDefault(require("dotenv"));
+// import path, { basename } from 'path'
 // Caminho relativo do arquivo
 // const absolutePath = path.resolve('./data').replace(/\\/g,"/");
 // console.log(absolutePath);
-// this is a top-level await 
+// this is a top-level await
+dotenv_1.default.config();
 (() => __awaiter(void 0, void 0, void 0, function* () {
     // open the database
     const db = yield (0, sqlite_1.open)({
-        filename: `database.sqlite`,
+        filename: `${process.env.DB_SQLITE}`,
         driver: sqlite3_1.default.Database
     }).then((db) => __awaiter(void 0, void 0, void 0, function* () {
         yield db.exec(`CREATE TABLE Case_Clients(

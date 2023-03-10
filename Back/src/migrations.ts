@@ -1,30 +1,23 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sqlite3_1 = __importDefault(require("sqlite3"));
-const sqlite_1 = require("sqlite");
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import dotenv from 'dotenv'
+// import path, { basename } from 'path'
+
 // Caminho relativo do arquivo
 // const absolutePath = path.resolve('./data').replace(/\\/g,"/");
 // console.log(absolutePath);
-// this is a top-level await 
-(() => __awaiter(void 0, void 0, void 0, function* () {
-    // open the database
-    const db = yield (0, sqlite_1.open)({
-        filename: `database.sqlite`,
-        driver: sqlite3_1.default.Database
-    }).then((db) => __awaiter(void 0, void 0, void 0, function* () {
-        yield db.exec(`CREATE TABLE Case_Clients(
+// this is a top-level await
+dotenv.config();
+
+(async () => {
+  // open the database
+  const db = await open({
+    filename: `${process.env.DB_SQLITE}`,
+    driver: sqlite3.Database
+  }).then(async (db) => {
+    await db.exec(
+
+      `CREATE TABLE Case_Clients(
         id VARCHAR(255) primary key,
         name varchar(255) unique
       );
@@ -44,8 +37,9 @@ const sqlite_1 = require("sqlite");
         fk_product VARCHAR(255),
         FOREIGN KEY(fk_client) REFERENCES Case_Clients(id),
         FOREIGN KEY(fk_product) REFERENCES Case_Products(id)
-      );`).then((bd) => __awaiter(void 0, void 0, void 0, function* () {
-            yield db.run(`INSERT INTO Case_Products
+      );`).then(async (bd) => {
+        await db.run(
+          `INSERT INTO Case_Products
           VALUES 
           ('1' , 'Tomate Italiano', 7.99 , 700),
           ('2', 'Couve Flor Bandeja 250G', 7.99, 500),
@@ -76,7 +70,9 @@ const sqlite_1 = require("sqlite");
           ('27', 'Desodorante Antitranspirante Rexona sem Perfume 50Ml', 11.99,208),
           ('28', 'Suco Del Valle 100% Laranja 1L', 9.99, 456),
           ('29', 'Biscoito Recheado Milkshake de Morango Oreo 90G', 3.99, 456),
-          ('30', 'Cerveja Duplo Malte Puro Malte Br',3.99,500);`);
-        }));
-    }));
-}))();
+          ('30', 'Cerveja Duplo Malte Puro Malte Br',3.99,500);`
+        )
+      }
+      )
+  })
+})()
