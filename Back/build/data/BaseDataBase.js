@@ -11,10 +11,10 @@ class BaseDataBase {
 }
 exports.BaseDataBase = BaseDataBase;
 BaseDataBase.connection = (0, knex_1.default)({
-    client: "mysql",
+    client: "mysql2",
     connection: {
         host: process.env.DB_HOST,
-        port: 3306,
+        port: Number(process.env.DB_PORT),
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_SCHEMA,
