@@ -9,10 +9,10 @@ import dotenv from 'dotenv'
 // this is a top-level await
 dotenv.config();
 
-(async () => {
+export const mig=async () => {
   // open the database
   const db = await open({
-    filename: `${process.env.DB_SQLITE}`,
+    filename: `build/${process.env.DB_SQLITE}`,
     driver: sqlite3.Database
   }).then(async (db) => {
     await db.exec(
@@ -75,4 +75,4 @@ dotenv.config();
       }
       )
   })
-})()
+}

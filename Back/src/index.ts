@@ -1,3 +1,4 @@
+import { mig } from './migrations';
 import { clientRouter } from './router/clientRouter';
 import { app } from "./app";
 import { productRouter } from './router/productRouter';
@@ -8,6 +9,8 @@ import path  from 'path';
 
 const local=path.resolve("../src")
 console.log(local);
+
+mig();
 
 app.get("/",(req:Request,resp:Response)=>{
     resp.send(`API Mine Markert ok! ${local}`)
