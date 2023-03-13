@@ -18,7 +18,7 @@ export class BaseDataBase {
       //   },
       client: 'sqlite3', // or 'better-sqlite3'
       connection: {
-         filename: `${process.env.DB_SQLITE}`
+         filename: `database.bd`
       },
       useNullAsDefault: true
    }) 

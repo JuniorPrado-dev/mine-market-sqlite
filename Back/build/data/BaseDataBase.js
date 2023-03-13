@@ -23,7 +23,7 @@ BaseDataBase.connection = (0, knex_1.default)({
     //   },
     client: 'sqlite3',
     connection: {
-        filename: `${process.env.SQLITE_DB}`
+        filename: `${process.env.DB_SQLITE}`
     },
     useNullAsDefault: true
 });

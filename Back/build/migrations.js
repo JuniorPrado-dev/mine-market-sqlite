@@ -24,7 +24,7 @@ dotenv_1.default.config();
 (() => __awaiter(void 0, void 0, void 0, function* () {
     // open the database
     const db = yield (0, sqlite_1.open)({
-        filename: `${process.env.DB_SQLITE}`,
+        filename: `database.bd`,
         driver: sqlite3_1.default.Database
     }).then((db) => __awaiter(void 0, void 0, void 0, function* () {
         yield db.exec(`CREATE TABLE Case_Clients(
